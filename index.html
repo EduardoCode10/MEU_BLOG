@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduardo Oliveira | Blog Pessoal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="ESTILO/style.css">
+
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --text: #ecf0f1;
+            --hover: #2980b9;
+            --bg: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--primary);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: linear-gradient(to right, var(--text), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem 5%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--text), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        #h1 {
+    background: linear-gradient(45deg, #3498db, #9b59b6, #1abc9c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 8s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+        /* Novo estilo para os pensamentos */
+        .thoughts-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .thought-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .thought-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .thought-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .thought-author {
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .thought-meta {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .thought-date {
+            color: var(--accent);
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .thought-card {
+                padding: 1.3rem;
+            }
+            
+            .thought-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .thought-meta {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="https://github.com/EduardoCode10" class="logo">
+            <div class="logo-img">EO</div>
+            <span class="logo-text">Eduardo Oliveira</span>
+        </a>
+
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="menu" id="mainMenu">
+            <a href="index.html" class="menu-link active"><i class="fas fa-home"></i>Início</a>
+            <a href="sobre_mim.html" class="menu-link"><i class="fas fa-user"></i>Sobre mim</a>
+            <a href="contato.html" class="menu-link"><i class="fas fa-envelope"></i>Contato</a>
+            <a href="analise_dados.html" class="menu-link"><i class="fas fa-chart-line"></i>Análise de Dados</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="inicio" class="visible">
+            <h1>Bem-vindo ao Meu Blog</h1>
+            <p>Explore meus pensamentos, projetos e insights sobre tecnologia, análise de dados e desenvolvimento web.</p>
+        </section>
+
+        <div class="thoughts-container">
+            <h1 id="h1">Pensamentos</h1>
+            
+            <div class="thought-card">
+                <p class="thought-text">" Ficar parado e não fazer nada pode ser uma das piores decisões que um homem pode tomar ".</p>
+                <span class="thought-author">- Eduardo Oliveira</span>
+                <div class="thought-meta">
+                    <span class="thought-date">2024</span>
+                </div>
+            </div>
+            
+            <div class="thought-card">
+                <p class="thought-text">" A persistência é o caminho do êxito. Cada linha de código escrita é um passo em direção à maestria ".</p>
+                <span class="thought-author">- Eduardo Oliveira</span>
+                <div class="thought-meta">
+                    <span class="thought-date">2024</span>
+                </div>
+            </div>
+            
+            <!-- Adicione mais pensamentos aqui seguindo o mesmo padrão -->
+        </div>
+    </main>
+
+    <script>
+        // Menu toggle para mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const menu = document.getElementById('mainMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            menuToggle.innerHTML = menu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fechar menu ao clicar em um link
+        const menuLinks = document.querySelectorAll('.menu-link');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    menu.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                // Ativar link clicado
+                menuLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Scroll animation
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Efeito de máquina de escrever para o título
+        const title = document.querySelector('h1');
+        const text = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                title.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        };
+        
+        setTimeout(typeWriter, 500);
+    </script>
+
+</body>
+</html>

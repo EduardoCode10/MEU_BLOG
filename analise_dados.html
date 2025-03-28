@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Dados | Eduardo Oliveira</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --text: #ecf0f1;
+            --hover: #2980b9;
+            --bg: #1a1a1a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navbar (manter igual às outras páginas) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--primary);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: linear-gradient(to right, var(--text), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--text), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-intro {
+            font-size: 1.2rem;
+            color: rgba(236, 240, 241, 0.9);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Guia de Análise */
+        .analysis-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .step-content {
+            color: rgba(236, 240, 241, 0.8);
+        }
+
+        .step-content ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .step-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-snippet {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        /* Seção de Ferramentas */
+        .tools-section {
+            margin-top: 4rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.05);
+            border: 1px solid var(--accent);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .step-card {
+                padding: 1.5rem;
+            }
+            
+            .main-content {
+                margin-top: 80px;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-content">
+        <div class="page-header">
+            <h1>Análise de Dados</h1>
+            <p class="page-intro">Guia completo do processo de análise de dados, desde a preparação até a visualização e interpretação dos resultado.</p>
+        </div>
+
+        <div class="analysis-guide">
+            <!-- Passo 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Coleta de Dados</h3>
+                <div class="step-content">
+                    <p>Obtenção dos dados brutos de diversas fontes:</p>
+                    <ul>
+                        <li>Bancos de dados (SQL, NoSQL)</li>
+                        <li>APIs RESTful</li>
+                        <li>Arquivos (CSV, Excel, JSON)</li>
+                        <li>Web Scraping</li>
+                    </ul>
+                    <div class="code-snippet">
+                        # Python - Exemplo de leitura de CSV<br>
+                        import pandas as pd<br>
+                        df = pd.read_csv('dados.csv')
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Limpeza dos Dados</h3>
+                <div class="step-content">
+                    <p>Processo de preparação dos dados para análise:</p>
+                    <ul>
+                        <li>Tratamento de valores missing</li>
+                        <li>Correção de inconsistências</li>
+                        <li>Padronização de formatos</li>
+                        <li>Remoção de duplicatas</li>
+                    </ul>
+                    <div class="code-snippet">
+                        # Tratamento de dados faltantes<br>
+                        df.fillna(method='ffill', inplace=True)<br>
+                        df.drop_duplicates(inplace=True)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Exploração Inicial</h3>
+                <div class="step-content">
+                    <p>Análise exploratória para entender os dados:</p>
+                    <ul>
+                        <li>Estatísticas descritivas</li>
+                        <li>Identificação de outliers</li>
+                        <li>Análise de correlações</li>
+                        <li>Visualizações iniciais</li>
+                    </ul>
+                    <div class="code-snippet">
+                        # Estatísticas básicas<br>
+                        print(df.describe())<br>
+                        print(df.corr())
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Transformação</h3>
+                <div class="step-content">
+                    <p>Preparação dos dados para modelagem:</p>
+                    <ul>
+                        <li>Normalização/Padronização</li>
+                        <li>Codificação de variáveis categóricas</li>
+                        <li>Engenharia de features</li>
+                        <li>Redução de dimensionalidade</li>
+                    </ul>
+                    <div class="code-snippet">
+                        # Normalização Min-Max<br>
+                        from sklearn.preprocessing import MinMaxScaler<br>
+                        scaler = MinMaxScaler()<br>
+                        df[['coluna']] = scaler.fit_transform(df[['coluna']])
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <h3 class="step-title">Modelagem</h3>
+                <div class="step-content">
+                    <p>Aplicação de técnicas analíticas:</p>
+                    <ul>
+                        <li>Algoritmos de Machine Learning</li>
+                        <li>Análise estatística</li>
+                        <li>Modelos preditivos</li>
+                        <li>Validação cruzada</li>
+                    </ul>
+                    <div class="code-snippet">
+                        # Regressão Linear<br>
+                        from sklearn.linear_model import LinearRegression<br>
+                        model = LinearRegression()<br>
+                        model.fit(X_train, y_train)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step-card">
+                <div class="step-number">6</div>
+                <h3 class="step-title">Visualização</h3>
+                <div class="step-content">
+                    <p>Criação de gráficos e dashboards:</p>
+                    <ul>
+                        <li>Gráficos estatísticos</li>
+                        <li>Visualizações interativas</li>
+                        <li>Dashboards em tempo real</li>
+                        <li>Storytelling com dados</li>
+                    </ul>
+                    <div class="code-snippet">
+                        # Matplotlib e Seaborn<br>
+                        import matplotlib.pyplot as plt<br>
+                        import seaborn as sns<br>
+                        sns.heatmap(df.corr(), annot=True)<br>
+                        plt.show()
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tools-section">
+            <h2>Ferramentas Recomendadas</h2>
+            <p>Tecnologias essenciais para análise de dados:</p>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fab fa-python"></i></div>
+                    <h3>Python</h3>
+                    <p>Pandas, NumPy, SciPy</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-database"></i></div>
+                    <h3>SQL</h3>
+                    <p>PostgreSQL, MySQL</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Power BI</h3>
+                    <p>Visualização de dados</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>Tableau</h3>
+                    <p>Dashboards interativos</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Machine Learning</h3>
+                    <p>Scikit-learn, TensorFlow</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>
